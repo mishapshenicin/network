@@ -1,0 +1,40 @@
+
+{% extends 'template.html' %}
+{% block auth %}
+{% endblock %}
+{% block nav %}
+{% endblock %}
+{% block content %}
+<div class='row mt-3'>
+    <div class='col-xs-12 col-md-6 m-auto'>
+        <div class="card">
+            <div class="card-header">
+                Регистрация
+            </div>
+            <div class='card-body'>
+                <form method='post' class='needs-validation'>
+                    {% csrf_token %}
+                    <input type='email' name='f_mail' class='form-control' required placeholder='Email (Электронная почта)'>
+                    <input type='username' name='f_login' class='form-control mt-2' required placeholder='Имя пользователя'>
+                    <div class='dropdown-divider mt-3'></div>
+                    <input type='text' name='f_first_name' class='form-control mt-3' value='{{get_first_name}}' required placeholder='Имя'>
+                    <input type='text' name='f_last_name' class='form-control mt-2' value='{{get_last_name}}' required placeholder='Фамилия'>
+                    <label class='text-muted mt-2'>Дата рождения:</label>
+                    <input type='date' name='f_birthday' value='{{get_birthday}}' class='form-control' required>
+                    <div class='dropdown-divider mt-3'></div>
+                    <input type='password' name='f_pwd' class='form-control mt-3' required placeholder='Пароль'>
+                    <input type='password' name='f_pwd_confirm' class='form-control mt-2' required placeholder='Пароль (ещё раз)'>
+                    <!--<div class="custom-control custom-checkbox mt-3">
+                        <input type="checkbox" class="custom-control-input" required id="check_sogl">
+                        <label class="custom-control-label text-white" for="check_sogl">I agree with <a href='user_agreement' target='_blank'>the user agreement</a></label>
+                    </div>-->
+                    <div class='row'>
+                        <div class='col-4'><a href="/" class='btn btn-dark btn-block mt-3'>Назад</a></div>
+                        <div class='col'><button class='btn btn-primary btn-block mt-3'>Регистрация</button></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

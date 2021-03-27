@@ -1,0 +1,86 @@
+
+<!doctype html>
+<html lang="ru" class="h-100">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    {% load static %}
+    {% block fav %}<link rel="icon" href="{% static 'main.png' %}" type="image/x-icon">{% endblock %}
+    <title>Let's Talk</title>
+    <style type="text/css">
+    	#topBtn {
+    		position: fixed;
+    		height: 100%;
+    		width: 6%;
+    		top: 0;
+    	}
+    	body, .bg-dark, .btn-secondary, .bg-secondary, .list-group, .modal, .modal-body, .modal-footer, .dropdown-divider {
+        	background-color: #353E49;
+        	border-color: #28313D;
+        }
+
+        .card, .card-body{
+            background-color: #3A424F;
+        	border-color: #28313D;
+        }
+
+        .border-secondary{
+            border-color: #4A57A6;
+        }
+
+        .navbar-dark, .btn-dark, .form-control, .custom-control-input, .list-group-item, .list-group-item-action, .list-group-item:hover, .list-group-item-action:hover, .modal-header{
+        	background-color: #28313D;
+        	border-color: #28313D;
+        }
+
+        .btn-primary {
+        	background-color: #4A57A6;
+        	border-color: #4A57A6;
+        }
+
+        .text-muted {
+            color: #495057;
+        }
+
+        .card-text, .card-title, .card-header, .modal-header {
+            color: #fff;
+        }
+    </style>
+  </head>
+  <body>
+  	
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  	<div class="container bg-llred shadow" id="center-fixed-container" style="position: fixed; top: 0; bottom: 0; height: 100%; left: 50%; transform: translate(-50%, 0);"></div>
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dred fixed-top">
+		<div class="container">
+	  <a class="navbar-brand" href="/">Let's Talk</a>
+	  <button class="navbar-toggler btn-primary text-white" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+
+	  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+	    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+	    	{% block nav %}{% endblock %}
+	    </ul>
+	    {% block auth %}{% endblock %}
+	</nav>
+
+  	<div class="d-none d-xl-block"><div id="topBtn" class="bg-light text-dark text-center user-select-none" style="display: none;"><p style="margin-top: 123px;"><b>Наверх</b></p></div></div>
+  	<div class="navbar navbar-expand-lg"><a class="navbar-brand" href="#">.</a></div>
+  	<div class="container h-100">
+	  	{% block content %}{% endblock %}
+  	</div>
+	{% block toup %}
+        {% load static %}
+	    <script src="{% static 'js/main.js' %}" type="text/javascript"></script>
+	{% endblock %}
+	{% block extrajs %}{% endblock %}
+
+  </body>
+</html>

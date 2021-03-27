@@ -1,0 +1,37 @@
+
+{% extends 'main.html' %}
+{% block content %}
+<div class="card h-100 mt-3">
+	<div class="card-header">
+		Друзья
+	</div>
+	<div class="card-body h-100">
+		{% if friends_count <= 0 %}
+			<div class="alert alert-secondary">Нет ни одного друга.</div>
+			<a class="btn btn-dark bg-dred btn-lg">Найти друзей</a>
+		{% else %}
+			<div class="list-group">
+			    {% for friend in friends %}
+					<div class="list-group-item list-group-item-action user-select-none">
+						<img src="{{friend.userprofile.avatar}}" class="rounded-circle d-inline" alt="..." style="width: 40px; height: 40px">
+						<a href="/id{{friend.id}}" class="btn btn-lg ml-4 text-white" style="padding: 0">{{friend.first_name}} {{friend.last_name}}</a>
+						<div class="btn-group float-right d-flex d-md-none">
+                        	<button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" data-display="static" aria-haspopup="false" aria-expanded="true">
+                        	</button>
+                        	<div class="dropdown-menu dropdown-menu-right">
+                        		<a href="/friendship_request/{{friend.id}}?n=/friends{{user.id}}" class="dropdown-item">Удалить из друзей</a>
+                        		<div class="dropdown-divider"></div>
+                        		<a class="dropdown-item" href="/telegraph/dialogue/start/{{friend.id}}">Написать</a>
+                        	</div>
+                        </div>
+                        <div class="d-none d-md-inline-flex float-right">
+						    <a href="/telegraph/dialogue/start/{{friend.id}}" class="btn btn-primary mr-1">Написать</a>
+						    <a href="/friendship_request/{{friend.id}}?n=/friends{{user.id}}" class="btn btn-secondary">Удалить из друзей</a>
+                        </div>
+					</div>
+			    {% endfor %}
+			</div>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

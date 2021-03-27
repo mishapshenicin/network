@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block extrajs %}
+	    <script src="{% static 'js/msg_view.js' %}" type="text/javascript"></script>
+{% endblock %}
+{% block fav %}<link rel="icon" href="{% static 'telegraph.png' %}" type="image/x-icon">{% endblock %}
+{% block content %}
+    <div id="userinfo" data-avatar="{{request.user.userprofile.avatar}}" data-name="{{ request.user.first_name }} {{ request.user.last_name }}" data-id = "{{request.user.id}}">
+    <div id='block' class="w-100 h-100">
+        {% if not chat %}
+                    Невозможно начать беседу. Не найден пользователь или вы не имеете доступа к данной беседе.
+        {% else %}
+                <div id="messages">
+                    {% for message in chat.message_set.all %}
+                            {% include 'pages/mail/msg.html' with message_item=message %}
+                    {% endfor %}
+                </div>
+        {% endif %}
+    </div>
+    <div style="height: 70px; display: block;">
+
+    </div>
+    <div class="container" style="position: fixed; bottom: 0; left: 50%; transform: translate(-50%, 0);">
+        {% if chat %}
+            <div data-chat='{{chat.id}}' id="message_form">
+                <div class="input-group mb-3 w-100">
+                    <input name="message" placeholder="Введите текст телеграммы..." class="form-control" required="" id="id_message">
+                    <div class="input-group-append">
+                        <button type="submit" id="id_message_send" class="btn btn-primary">Отправить</button>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+{% block toup %}{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="card h-100 mt-3">
+	<div class="card-header">
+		Поиск
+	</div>
+	<div class="card-body h-100">
+	    <div class="mb-4">
+	        <form method="get">
+	            <div class="input-group mb-3 w-100">
+					<input type="text" class="form-control" name="query" placeholder="Введите имя или фамилию...">
+					<div class="input-group-append">
+						<button class="btn btn-secondary">Поиск</button>
+					</div>
+				</div>
+	        </form>
+	    </div>
+		{% if not users %}
+			<div class="alert alert-secondary">Пользователи не найдены</div>
+		{% else %}
+			<div class="list-group">
+			    {% for user in users %}
+					<div class="list-group-item list-group-item-action user-select-none">
+						<img src="{{user.userprofile.avatar}}" class="rounded-circle d-inline" alt="..." style="width: 40px; height: 40px">
+						<a href="/id{{user.id}}" class="btn btn-lg ml-4 text-white" style="padding: 0">{{user.first_name}} {{user.last_name}}</a>
+                        <div class="d-none d-md-inline-flex float-right">
+						    <a href="/telegraph/dialogue/start/{{user.id}}" class="btn btn-primary mr-1">Написать</a>
+                        </div>
+					</div>
+			    {% endfor %}
+			</div>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

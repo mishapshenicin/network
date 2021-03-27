@@ -1,0 +1,41 @@
+
+{% extends 'main.html' %}
+{% block extrajs %}
+        {% load static %}
+	    <script src="{% static 'js/profile_edit.js' %}" type="text/javascript"></script>
+{% endblock %}
+{% block content %}
+<div class="m-auto col-md-5 col-xs-10">
+	<div class="card mt-5">
+		<div class="card-header">
+			Редактирование страницы
+		</div>
+		<div class="card-body">
+			<form method="post">
+				{% csrf_token %}
+				<label class="text-muted mt-4">URL аватара:</label>
+				<div class="input-group">
+					<input class="form-control" name="avatar" value="{{request.user.userprofile.avatar}}">
+					<div class="input-group-append">
+						<button type="submit" class="btn btn-primary">Применить</button>
+					</div>
+				</div>
+			</form>
+			<br>
+			<label class="text-muted mt-4">Имя:</label>
+			<input class="form-control" id='first_name-fld' type="text" value="{{request.user.first_name}}">
+			<label class="text-muted mt-4">Фамилия:</label>
+			<input class="form-control" id='last_name-fld' type="text" value="{{request.user.last_name}}">
+			<br>
+			<label class="text-muted mt-4">Дата рождения:</label>
+			<input class="form-control" id='date-fld' type="date" value='{{request.user.userprofile.birth_date|date:"Y-m-d" }}'>
+			<div class="custom-control custom-checkbox mt-3">
+                <input type="checkbox" class="custom-control-input" id="close_wall"  {% if request.user.userprofile.closed_wall != 0 %} checked {% endif %}>
+                <label class="custom-control-label text-muted" for="close_wall">Запретить другим пользователям оставлять записи на стене</label>
+            </div>
+			<br>
+			<button id='editprofile-apply' class="btn btn-primary btn-block">Применить изменения</button>
+		</div>
+	</div>
+</div>
+{% endblock %}

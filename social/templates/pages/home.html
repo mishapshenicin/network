@@ -1,0 +1,56 @@
+
+{% extends 'template.html' %}
+
+{% block content %}
+<div class="row" style="margin-top: 15px">
+	<div class="col-8 d-none d-xl-block">
+		<div class="card h-100">
+			<div class="card-header">
+                Let's Talk
+			</div>
+			<div class="card-body text-white">
+                <b>Социальная сеть</b> (сокр. соцсеть) — онлайн-платформа, которая используется для общения, знакомств, создания социальных отношений между людьми, которые имеют схожие интересы или офлайн-связи, а также для развлечения (музыка, фильмы) и работы.
+                <br>
+                (<a href="https://ru.wikipedia.org/wiki/Социальная_сеть" class="text-white">Википедия</a>)
+
+			</div>
+		</div>
+	</div>
+	<div class="col-xs-12 col-xl-4">
+		<div class="card">
+			<div class="card-header">
+				Вход
+			</div>
+			<div class="card-body">
+				<form method="post">
+					{% csrf_token %}
+					<input type="text" name="username" class="form-control" placeholder="Имя пользователя" required="">
+					<input type="password" name="pass" class="form-control mt-2" placeholder="Пароль" required="">
+					<button type="submit" class="btn btn-primary mt-2 col-4 d-inline">Вход</button>
+					<a class="btn text-primary mt-2" target="_blank" href="/module_error/">Забыли пароль?</a>
+				</form>
+			</div>
+		</div>
+		<div class="card mt-3">
+			<div class="card-header">
+				Регистрация
+			</div>
+			<div class="card-body">
+				<div class="text-center">
+					<h5 class="text-white">Впервые у нас?</h5>
+					<h6 class="text-muted">Пройдите регистрацию</h6>
+				</div>
+				<form action="/registration" method="get">
+					<input type="text" name="first_name" class="form-control" placeholder="Имя" required="">
+					<input type="text" name="last_name" class="form-control mt-2" placeholder="Фамилия" required="">
+
+					<label class="text-muted mt-4">Дата рождения:</label>
+					<input type="date" name="birthday" class="form-control" required="">
+
+					<button type="submit" class="btn btn-primary mt-2 btn-block">Продолжить регистрацию</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
